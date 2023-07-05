@@ -1,16 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
-import NavBar from'./components/NavBar';
-
+import Layout from "./components/Layout";
+import Carrusel from "./components/Carousel";
+import Novedades from "./components/Novedades";
+import Apartado from "./components/Apartado";
 function App() {
+
   return (
-    <div className="App">
-     
-        <img src={logo} className="App-logo" alt="logo" />
-        <NavBar/>
-      
-     
-    </div>
+       
+       <Layout>
+       
+       <Apartado name={"Ultimate pizza"}/>
+
+      <Carrusel/>
+      <Novedades/>
+      </Layout>
+       
   );
 }
 
