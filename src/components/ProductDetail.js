@@ -1,6 +1,14 @@
-import React from "react";
+import {useContext,useState} from "react";
+import { useNavigate } from "react-router-dom";
+import { ContextFunctions } from "../context/contextFunctions";
+import Button from 'react-bootstrap/Button';
+
 
 const ProductDetail=({item})=>{
+
+const {addProduct,isInCart}=useContext(ContextFunctions);
+const navigate=useNavigate();
+const [quantityProduct,setQuantityProduct]=useState(1);
 
 return(
 
@@ -17,11 +25,13 @@ return(
 
 <div id="product-buttons">
 
-<button>-</button>
-<span id="product-count">1</span>
-<button>+</button>
+<button onClick={()=>quantityProduct > 1 && setQuantityProduct(prev=>prev-1)} >-</button>
+<span id="product-count">{quantityProduct}</span>
+<button onClick={()=>setQuantityProduct(prev=>prev+1)}>+</button>
 
 </div>
+
+<Button variant="outline-danger" className="addCart" onClick={e=>addProduct(item,quantityProduct)}>Agregar al carrito</Button>
 
 <span id="available-product">Disponible</span>
 
