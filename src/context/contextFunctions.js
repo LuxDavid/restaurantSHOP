@@ -1,4 +1,5 @@
 import { createContext,useState,useEffect } from "react";
+import Swal from 'sweetalert2';
 
 export const ContextFunctions= createContext([]);
 
@@ -37,9 +38,12 @@ const addProduct=(item,quantity)=>{
     )
     
     );
+
+    notificacion("Agregado al carrito",'green','success');
     
     } else{
         setCarrito((prevState)=>prevState.concat({item, quantityAdded:quantity}));
+        notificacion("Agregado al carrito",'green','success');
        
     }
     
@@ -67,6 +71,21 @@ return Boolean(carrito.find(product=>product.item.id === itemId))
 }
 
 //------------------------------------------------------------------------------
+
+const notificacion = (notificacion,color,icono) => {
+
+    Swal.fire({
+        icon:icono,
+        title: notificacion,
+        position: 'top-end',
+        showConfirmButton: false,
+        toast: true,
+        timer: 1000,
+        background:color,
+        color: "white"
+    })
+  
+  }
 
 return(
 <ContextFunctions.Provider value={{
